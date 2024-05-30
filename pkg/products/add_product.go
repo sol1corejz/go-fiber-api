@@ -26,7 +26,6 @@ func (h handler) AddProduct(c *fiber.Ctx) error {
 	product.Stock = body.Stock
 	product.Price = body.Price
 
-	// insert new db entry
 	if result := h.DB.Create(&product); result.Error != nil {
 		return fiber.NewError(fiber.StatusNotFound, result.Error.Error())
 	}

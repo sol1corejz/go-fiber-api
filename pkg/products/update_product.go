@@ -16,7 +16,6 @@ func (h handler) UpdateProduct(c *fiber.Ctx) error {
 	id := c.Params("id")
 	body := UpdateProductRequestBody{}
 
-	// getting request's body
 	if err := c.BodyParser(&body); err != nil {
 		return fiber.NewError(fiber.StatusBadRequest, err.Error())
 	}
@@ -31,7 +30,6 @@ func (h handler) UpdateProduct(c *fiber.Ctx) error {
 	product.Stock = body.Stock
 	product.Price = body.Price
 
-	// save product
 	h.DB.Save(&product)
 
 	return c.Status(fiber.StatusOK).JSON(&product)
